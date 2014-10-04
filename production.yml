@@ -19,7 +19,7 @@ route_cache: 1
 apikey: %%APIKEY%%
 
 #TV Api config
-showDir: %%SHOWDIR%%
+showDir: %%TVDIR%%
 tvTorrentWatch: %%TVTORRENTS%% 
 moviesTorrentWatch: %%MOVIETORRENTS%% 
 
