@@ -19,6 +19,7 @@ RUN cp /opt/download_manager/etc/downloads.conf.sample /opt/download_manager/etc
 RUN ln -s /opt/download_manager/etc/downloads.conf /etc/downloadManager.conf
 
 #Add the deluge config
+VOLUME /etc/deluge/
 ADD deluge_config.tar.gz /etc/deluge/
 ADD configure.pl /tmp/configure.pl
 ADD environment.conf /tmp/environment.conf
