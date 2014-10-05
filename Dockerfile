@@ -16,6 +16,7 @@ RUN cpan -j /tmp/cpan_config.pm -f -T -i File::Unpack; echo 'done'
 #Retrieve the post processing scripts
 RUN git clone https://github.com/ChrisPortman/downloadManager.git /opt/download_manager
 RUN cp /opt/download_manager/etc/downloads.conf.sample /opt/download_manager/etc/downloads.conf
+RUN ln -s /opt/download_manager/etc/downloads.conf /etc/downloadManager.conf
 
 #Add the deluge config
 ADD deluge_config.tar.gz /etc/deluge/
