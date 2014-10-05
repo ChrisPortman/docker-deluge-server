@@ -34,6 +34,7 @@ RUN perl /tmp/configure.pl
 
 #Publish the network port
 EXPOSE 80
+EXPOSE 8112
 EXPOSE 58846
 
 #Define the Entrypoint
