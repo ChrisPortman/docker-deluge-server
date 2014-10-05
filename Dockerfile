@@ -13,21 +13,23 @@ RUN apt-get update && apt-get install -y --force-yes git deluged deluge-web delu
 ADD cpan_config.pm /tmp/cpan_config.pm
 RUN cpan -j /tmp/cpan_config.pm -f -T -i File::Unpack; echo 'done'
 
-#Retrieve the post processing scripts
+#Clone the required GIT repos
 RUN git clone https://github.com/ChrisPortman/downloadManager.git /opt/download_manager
+RUN git clone https://github.com/ChrisPortman/TorrentManager.git /opt/torrent_manager
+
+#Configure the post processing scripts
 RUN cp /opt/download_manager/etc/downloads.conf.sample /opt/download_manager/etc/downloads.conf
 RUN ln -s /opt/download_manager/etc/downloads.conf /etc/downloadManager.conf
 
 #Add the deluge config
-VOLUME /etc/deluge/
 ADD deluge_config.tar.gz /etc/deluge/
 ADD configure.pl /tmp/configure.pl
 ADD environment.conf /tmp/environment.conf
 
-#Retrieve the TorrentManager web application
-RUN git clone https://github.com/ChrisPortman/TorrentManager.git /opt/torrent_manager
+#Configure the TorrentManager web application
 ADD production.yml /opt/torrent_manager/environments/production.yml
 
+#Apply all the settings from the environment.conf
 RUN perl /tmp/configure.pl
 
 #Publish the network port
