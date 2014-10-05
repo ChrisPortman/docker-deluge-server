@@ -34,5 +34,5 @@ EXPOSE 80
 EXPOSE 58846
 
 #Define the Entrypoint
-ENTRYPOINT plackup -E production -s Starman --workers=10 -p 80 /opt/torrent_manager/bin/app.pl; /usr/bin/deluged -d -c /etc/deluge
+ENTRYPOINT plackup -D -E production -s Starman --workers=10 -p 80 /opt/torrent_manager/bin/app.pl; /usr/bin/deluged -d -c /etc/deluge
 
