@@ -6,7 +6,7 @@ MAINTAINER Chris Portman <chris@portman.net.au>
 #Just need to find a package for File::Unpack
 ADD sources.list /etc/apt/sources.list
 ADD deluge.list /etc/apt/sources.list.d/deluge.list
-RUN apt-get update && apt-get install -y --force-yes git deluged deluge-web deluge-console libconfig-auto-perl liblog-any-adapter-dispatch-perl liblog-any-adapter-perl liblog-any-perl libmime-lite-perl libjson-perl libjson-xs-perl libwww-mechanize-perl make libdancer-perl libdancer-plugin-rest-perl starman
+RUN apt-get update && apt-get install -y --force-yes git deluged deluge-web deluge-console libconfig-auto-perl libemail-sender-perl libemail-sender-transport-smtps-perl liblog-any-adapter-dispatch-perl liblog-any-adapter-perl liblog-any-perl libmime-lite-perl libjson-perl libjson-xs-perl libwww-mechanize-perl make libdancer-perl libdancer-plugin-rest-perl starman
 
 #Install File::Unpack from cpan
 #The cpan client is picky and typically works, but will produce a non-zero exit code.
