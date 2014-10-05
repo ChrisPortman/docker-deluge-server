@@ -1,6 +1,7 @@
 #!/bin/env perl
 
 use strict;
+use Digest::SHA;
 
 my %DEFAULT_SETTINGS = (
   'ADMIN_USER'    => 'admin',
@@ -31,6 +32,13 @@ while (<$fh>) {
   $DEFAULT_SETTINGS{$opt} = $val;
 }
 close $fh;
+
+if ($DEFAULT_SETTINGS{'PWD_SALT'} and $DEFAULT_SETTINGS{'ADMIN_PASS'}) {
+  my $sha = Digest::SHA->new(1);
+  $sha->add($DEFAULT_SETTINGS{'PWD_SALT'});
+  $sha->add($DEFAULT_SETTINGS{'ADMIN_PASS'});
+  $DEFAULT_SETTINGS{'PWD_SHA'} = $sha->hexdigest;
+}
 
 my @dirs  = ( '/etc/deluge' );
 my @files = ( '/opt/download_manager/etc/downloads.conf', '/opt/torrent_manager/environments/production.yml' );
